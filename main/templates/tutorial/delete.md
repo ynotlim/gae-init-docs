@@ -21,8 +21,8 @@ def contact_delete(contact_id):
 
 #### Add a delete link on the contact list
 
-Next we'll need to add a link to the `contact_list.html` file.  Add a new column and add
-the following code after the address column:
+Next, we'll need to add a link to the `contact_list.html` file.  To do that, add a new column heading and add
+the following code after the address column `<td>{{contact_db.address}}</td>`:
 
 ```html
 ...
