@@ -36,15 +36,15 @@ from google.appengine.ext import ndb
 
 #### Add a delete link on the contact list
 
-Add an additional column to your table and add the following:
+Add an additional column to your table and add the following code after `<td>{{contact_db.address}}</td>`:
 
 ```html
 ...
-<td>
-  <a href="{{url_for('contact_update', contact_id=contact_db.key.id())}}">
-    {{contact_db.key.id()}}
-  </a>
-</td>
+          <td>
+            <a href="{{url_for('contact_delete', contact_id=contact_db.key.id())}}">
+              <span class="fa fa-fw fa-trash-o"></span>
+            </a>
+          </td>
 ...
 ```
 
