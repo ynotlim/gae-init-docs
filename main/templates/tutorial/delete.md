@@ -9,34 +9,20 @@ on the contact list.
 Add the following code to the `contact.py` file:
 
 ```python
-@app.route('/contact/<int:contact_id>/delete')
+@app.route('/contact/<int:contact_id>/delete/', methods=['GET', 'POST'])
 @auth.login_required
 def contact_delete(contact_id):
   contact_db = model.Contact.get_by_id(contact_id)
   if not contact_db or contact_db.user_key != auth.current_user_key():
     flask.abort(404)
-  delete_contact_dbs([contact_db.key])
+  contact_db.key.delete()
   return flask.redirect(flask.url_for('contact_list', order='-created'))
-```
-
-As you notice above, we had to add a `delete_contact_dbs` handler.  
-To do that, add the following code at the bottom of the `contact.py` file:
-
-```python
-@ndb.transactional(xg=True)
-def delete_contact_dbs(contact_db_keys):
-  ndb.delete_multi(contact_db_keys)
-```
-
-You will also need to import ndb from the appengine library:
-
-```python
-from google.appengine.ext import ndb
 ```
 
 #### Add a delete link on the contact list
 
-Add an additional column to your table and add the following code after `<td>{{contact_db.address}}</td>`:
+Next we'll need to add a link to the `contact_list.html` file.  Add a new column and add
+the following code after the address column:
 
 ```html
 ...
