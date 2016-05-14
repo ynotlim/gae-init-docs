@@ -160,7 +160,7 @@ TUTORIAL = [
     ('list', 'List contacts'),
     ('view', 'View contacts'),
     ('update', 'Update contacts'),
-#    ('delete', 'Deleting contacts'),
+    ('delete', 'Deleting contacts'),
 #    ('theme', 'Change theme'),
     ('deploy', 'Deploy'),
   ]
